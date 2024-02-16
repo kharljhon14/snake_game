@@ -27,18 +27,20 @@ impl Snake {
 
 #[wasm_bindgen]
 impl World {
-    pub fn new() -> World {
-        let width = 8;
-
+    pub fn new(width: usize, spawn_point: usize) -> World {
         World {
             width,
             size: width * width,
-            snake: Snake::new(10),
+            snake: Snake::new(spawn_point),
         }
     }
 
     pub fn snake_head(&self) -> usize {
         self.snake.body[0].0
+    }
+
+    pub fn set_snake_spawn(&mut self, spawn_postion: usize) {
+        self.snake.body = vec![SnakeCell(spawn_postion)];
     }
 
     pub fn update(&mut self) {

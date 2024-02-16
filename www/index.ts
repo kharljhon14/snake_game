@@ -2,10 +2,11 @@ import init, { World } from 'snake_game';
 
 init().then(() => {
   const CELL_SIZE = 20;
+  const WORLD_WIDTH = 20;
 
-  const world = World.new();
+  const SPAWN_CELL = Date.now() % (WORLD_WIDTH * WORLD_WIDTH);
 
-  world.set_width(20);
+  const world = World.new(WORLD_WIDTH, SPAWN_CELL);
 
   const worldWidth = world.get_width();
 
