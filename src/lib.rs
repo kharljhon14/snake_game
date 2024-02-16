@@ -1,6 +1,8 @@
 use wasm_bindgen::prelude::*;
 
 // wasm-pack build --target web
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
 pub struct World {
