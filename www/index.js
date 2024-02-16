@@ -1,5 +1,7 @@
-import init, { greet } from 'snake_game';
+import init, { World } from 'snake_game';
 
-init().then((_wasm) => {
-  greet('Kharl');
+init().then(() => {
+  const world = World.new();
+
+  console.log(world.get_width());
 });
