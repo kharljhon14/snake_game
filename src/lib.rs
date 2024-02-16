@@ -15,6 +15,10 @@ impl World {
         World { width: 8 }
     }
 
+    pub fn set_width(&mut self, new_width: usize) {
+        self.width = new_width;
+    }
+
     pub fn get_width(&self) -> usize {
         self.width
     }
