@@ -43,13 +43,22 @@ init().then(() => {
     ctx.stroke();
   }
 
-  const fps = 30;
-
-  setInterval(() => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  function paint() {
     drawWorld();
     drawSnake();
+  }
 
-    world.update();
-  }, 1000 / fps);
+  function update() {
+    const fps = 30;
+
+    setTimeout(() => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      paint();
+      world.update();
+      requestAnimationFrame(update);
+    }, 1000 / fps);
+  }
+
+  paint();
+  update();
 });
