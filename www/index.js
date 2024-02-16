@@ -5,7 +5,7 @@ init().then(() => {
 
   const world = World.new();
 
-  world.set_width(8);
+  world.set_width(20);
 
   const worldWidth = world.get_width();
 
@@ -43,6 +43,13 @@ init().then(() => {
     ctx.stroke();
   }
 
-  drawWorld();
-  drawSnake();
+  const fps = 30;
+
+  setInterval(() => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawWorld();
+    drawSnake();
+
+    world.update();
+  }, 1000 / fps);
 });
