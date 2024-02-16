@@ -1,6 +1,5 @@
 import init, { greet } from 'snake_game';
 
-init().then((_) => {
+init().then((_wasm) => {
   greet('Kharl');
-  console.log('Cool');
 });

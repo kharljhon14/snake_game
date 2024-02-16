@@ -4,5 +4,11 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 pub fn greet(name: &str) {
-    println!("Hello {name}");
+    alert(name);
+}
+
+#[wasm_bindgen]
+extern "C" {
+    pub fn alert(s: &str);
+
 }
