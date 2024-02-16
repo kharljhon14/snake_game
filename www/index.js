@@ -5,7 +5,7 @@ init().then(() => {
 
   const world = World.new();
 
-  world.set_width(16);
+  world.set_width(8);
 
   const worldWidth = world.get_width();
 
@@ -31,5 +31,18 @@ init().then(() => {
     ctx.stroke();
   }
 
+  function drawSnake() {
+    const snakeIndex = world.snake_head();
+    const col = snakeIndex % worldWidth;
+    const row = Math.floor(snakeIndex / worldWidth);
+
+    ctx.beginPath();
+
+    ctx.fillRect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+
+    ctx.stroke();
+  }
+
   drawWorld();
+  drawSnake();
 });
