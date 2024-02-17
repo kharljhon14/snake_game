@@ -67,7 +67,7 @@ init().then(() => {
   }
 
   function update() {
-    const fps = 30;
+    const fps = 10;
 
     setTimeout(() => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
