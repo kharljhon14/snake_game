@@ -1,8 +1,8 @@
-import init, { World } from 'snake_game';
+import init, { World, Direction } from 'snake_game';
 
 init().then(() => {
   const CELL_SIZE = 20;
-  const WORLD_WIDTH = 20;
+  const WORLD_WIDTH = 16;
 
   const SPAWN_CELL = Date.now() % (WORLD_WIDTH * WORLD_WIDTH);
 
@@ -15,6 +15,23 @@ init().then(() => {
 
   canvas.height = CELL_SIZE * worldWidth;
   canvas.width = CELL_SIZE * worldWidth;
+
+  document.addEventListener('keydown', (e) => {
+    switch (e.code) {
+      case 'ArrowUp':
+        world.change_snake_dir(Direction.Up);
+        break;
+      case 'ArrowDown':
+        world.change_snake_dir(Direction.Down);
+        break;
+      case 'ArrowRight':
+        world.change_snake_dir(Direction.Right);
+        break;
+      case 'ArrowLeft':
+        world.change_snake_dir(Direction.Left);
+        break;
+    }
+  });
 
   function drawWorld() {
     ctx.beginPath();
@@ -50,7 +67,7 @@ init().then(() => {
   }
 
   function update() {
-    const fps = 10;
+    const fps = 30;
 
     setTimeout(() => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);

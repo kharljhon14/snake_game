@@ -4,8 +4,9 @@ use wasm_bindgen::prelude::*;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
+#[wasm_bindgen]
 #[derive(PartialEq)]
-enum Direction {
+pub enum Direction {
     Up,
     Right,
     Left,
@@ -51,6 +52,10 @@ impl World {
 
     pub fn set_snake_spawn(&mut self, spawn_postion: usize) {
         self.snake.body = vec![SnakeCell(spawn_postion)];
+    }
+
+    pub fn change_snake_dir(&mut self, direction: Direction) {
+        self.snake.direction = direction;
     }
 
     pub fn update(&mut self) {
