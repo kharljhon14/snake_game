@@ -60,7 +60,7 @@ impl World {
 
     pub fn update(&mut self) {
         let snake_index = self.snake_head();
-        let (row, col) = (snake_index / self.width, snake_index % self.width);
+        let (row, col) = self.index_to_cell(snake_index);
 
         let (row, col) = match self.snake.direction {
             Direction::Up => ((row - 1) % self.width, col),
@@ -69,7 +69,20 @@ impl World {
             Direction::Left => (row, (col - 1) % self.width),
         };
 
-        self.snake.body[0].0 = (row * self.width) + col
+        let next_index = self.cell_to_index(row, col);
+        self.set_snake_head(next_index);
+    }
+
+    fn set_snake_head(&mut self, index: usize) {
+        self.snake.body[0].0 = index;
+    }
+
+    fn index_to_cell(&self, index: usize) -> (usize, usize) {
+        (index / self.width, index % self.width)
+    }
+
+    fn cell_to_index(&self, row: usize, col: usize) -> usize {
+        (row * self.width) + col
     }
 
     pub fn set_width(&mut self, new_width: usize) {
