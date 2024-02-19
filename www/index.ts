@@ -1,6 +1,6 @@
 import init, { World, Direction } from 'snake_game';
 
-init().then(() => {
+init().then((wasm) => {
   const CELL_SIZE = 20;
   const WORLD_WIDTH = 16;
 
@@ -15,6 +15,13 @@ init().then(() => {
 
   canvas.height = CELL_SIZE * worldWidth;
   canvas.width = CELL_SIZE * worldWidth;
+
+  const snakeCellsPtr = world.snake_cells();
+  const snakeLength = world.snake_length();
+
+  const snakeCells = new Uint32Array(wasm.memory.buffer, snakeCellsPtr, snakeLength);
+
+  console.log(snakeCells);
 
   document.addEventListener('keydown', (e) => {
     switch (e.code) {
