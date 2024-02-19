@@ -48,7 +48,7 @@ impl World {
         World {
             width,
             size: width * width,
-            snake: Snake::new(spawn_point, 1),
+            snake: Snake::new(spawn_point, 5),
         }
     }
 
